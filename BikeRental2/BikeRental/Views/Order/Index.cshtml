@@ -1,0 +1,53 @@
+@using BikeRental.Resources.Models;
+@using BikeRental.Resources.Views;
+@using BikeRental.Resources.Views.Shared;
+
+@model IEnumerable<BikeRental.Models.Order>
+    @{
+        ViewBag.Title = OrderViewRes.IndexPageTitle;
+    }
+
+    <h2>@OrderViewRes.IndexPageTitle</h2>
+
+    <p>@Html.ActionLink(ButtonRes.Create, "Create")</p>
+
+    <table>
+        <tr>
+            <th>@OrderRes.Bike</th>
+            <th>@OrderRes.Client</th>
+            <th>@OrderRes.Office</th>
+            <th>@OrderRes.OfficeFinish</th>
+            <th>@OrderRes.DateStart</th>
+            <th>@OrderRes.DateFinish</th>
+            <th>@OrderRes.IsFree</th>
+            <th>@OrderRes.Cost</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayTextFor(_ => item.Bike.Id).ToString()
+                    @Html.DisplayText("<span>.&nbsp</span>")
+                    @Html.DisplayTextFor(_ => item.Bike.Model).ToString()
+                </td>
+                <td>@Html.DisplayTextFor(_ => item.Client.FIO).ToString()</td>
+                <td>@Html.DisplayTextFor(_ => item.Office.Address).ToString()</td>
+                <td>@item.OfficeFinish</td>
+                <td>@String.Format("{0:g}", item.DateStart)</td>
+                <td>@String.Format("{0:g}", item.DateFinish)</td>
+                <td>@item.IsFree</td>
+                <td>@item.Cost</td>
+                <td>
+                    @Html.ActionLink(ButtonRes.Edit, "Edit", new { id = item.Id }) |
+                    @Html.ActionLink(ButtonRes.Delete, "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+
+

@@ -1,0 +1,44 @@
+@model IEnumerable<BikeRental.Models.Order>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>@Html.ActionLink("Create New", "Create")</p>
+
+<table>
+    <tr>
+        <th></th>
+        <th>OfficeFinish</th>
+        <th>DateStart</th>
+        <th>DateFinish</th>
+        <th>Cost</th>
+        <th>IsFree</th>
+        <th>Bike</th>
+        <th>Office</th>
+        <th>Client</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.OfficeFinish</td>
+        <td>@String.Format("{0:g}", item.DateStart)</td>
+        <td>@String.Format("{0:g}", item.DateFinish)</td>
+        <td>@item.Cost</td>
+        <td>@item.IsFree</td>
+        <td>@Html.DisplayTextFor(_ => item.Bike.Id).ToString()
+            @Html.DisplayText("<span>.&nbsp</span>")
+            @Html.DisplayTextFor(_ => item.Bike.Model).ToString()</td>
+        <td>@Html.DisplayTextFor(_ => item.Office.Address).ToString()</td>
+        <td>@Html.DisplayTextFor(_ => item.Client.FIO).ToString()</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+

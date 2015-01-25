@@ -1,0 +1,16 @@
+@using BikeRental.Resources.Models;
+@using BikeRental.Resources.Views;
+@using BikeRental.Resources.Views.Shared;
+
+@model BikeRental.Models.Office
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Address)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Address)
+    @Html.ValidationMessageFor(model => model.Address)
+</div>
+

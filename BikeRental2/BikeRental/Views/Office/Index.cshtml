@@ -1,0 +1,34 @@
+@using BikeRental.Resources.Models;
+@using BikeRental.Resources.Views;
+@using BikeRental.Resources.Views.Shared;
+
+@model IEnumerable<BikeRental.Models.Office>
+@{
+    ViewBag.Title = OfficeViewRes.IndexPageTitle;
+}
+
+<h2>@OfficeViewRes.IndexPageTitle</h2>
+
+<p>@Html.ActionLink(ButtonRes.Create, "Create")</p>
+
+<table>
+    <tr>
+        <th>@OfficeRes.Address</th>
+        <th>@OfficeRes.Orders</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.Address</td>
+        <td>@(item.Orders == null ? "None" : item.Orders.Count.ToString())</td>
+        <td>
+            @Html.ActionLink(ButtonRes.Edit, "Edit", new { id=item.Id }) |
+            @Html.ActionLink(ButtonRes.Delete, "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+

@@ -1,0 +1,87 @@
+@model BikeRental.Models.Order
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+<div class="editor-label">
+    Bike
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.BikeId, ((IEnumerable<BikeRental.Models.Bike>)ViewBag.PossibleBike).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option.Id).ToString() +". "+ Html.DisplayTextFor(_ => option.Model).ToString(), 
+        Value = option.Id.ToString(),
+        Selected = (Model != null) && (option.Id == Model.BikeId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.BikeId)
+</div>
+
+<div class="editor-label">
+    Client
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.ClientId, ((IEnumerable<BikeRental.Models.Client>)ViewBag.PossibleClient).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option.FIO).ToString(), 
+        Value = option.Id.ToString(),
+        Selected = (Model != null) && (option.Id == Model.ClientId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.ClientId)
+</div>
+
+<div class="editor-label">
+    Office
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.OfficeId, ((IEnumerable<BikeRental.Models.Office>)ViewBag.PossibleOffice).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option.Address).ToString(), 
+        Value = option.Id.ToString(),
+        Selected = (Model != null) && (option.Id == Model.OfficeId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.OfficeId)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.OfficeFinish)
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.OfficeFinish, 
+    ((IEnumerable<BikeRental.Models.Office>)ViewBag.PossibleOffice)
+    .Select(option => new SelectListItem
+      {
+        Text = Html.DisplayTextFor(_ => option.Address).ToString(), 
+        Value = option.Address,
+        Selected = (Model != null) && (option.Address == Model.OfficeFinish)
+       }), "Choose...")
+    @Html.ValidationMessageFor(model => model.OfficeFinish)
+</div>
+
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DateStart)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DateStart)
+    @Html.ValidationMessageFor(model => model.DateStart)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DateFinish)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DateFinish)
+    @Html.ValidationMessageFor(model => model.DateFinish)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IsFree)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.IsFree)
+    @Html.ValidationMessageFor(model => model.IsFree)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Cost)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Cost)
+    @Html.ValidationMessageFor(model => model.Cost)
+</div>
+

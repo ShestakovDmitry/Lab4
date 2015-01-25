@@ -1,0 +1,32 @@
+﻿@using BikeRental.Resources.Models;
+<table id="OrdersBikes">
+    <tr>
+        <th>@OrderRes.Bike</th>
+        <th>@OrderRes.Client</th>
+        <th>@OrderRes.Office</th>
+        <th>@OrderRes.OfficeFinish</th>
+        <th>@OrderRes.DateStart</th>
+        <th>@OrderRes.DateFinish</th>
+        <th>@OrderRes.IsFree</th>
+        <th>@OrderRes.Cost</th>
+    </tr>
+
+    @foreach (var item in ViewBag.Orders)
+    {
+        <tr>
+            <td>
+                @item.Bike.Id
+                @Html.DisplayText("<span>.&nbsp</span>")
+                @item.Bike.Model
+            </td>
+            <td>@item.Client.FIO</td>
+            <td>@item.Office.Address</td>
+            <td>@item.OfficeFinish</td>
+            <td>@String.Format("{0:g}", item.DateStart)</td>
+            <td>@String.Format("{0:g}", item.DateFinish)</td>
+            <td>@item.IsFree</td>
+            <td>@item.Cost</td>
+        </tr>
+    }
+
+</table>

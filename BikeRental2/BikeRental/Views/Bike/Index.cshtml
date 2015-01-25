@@ -1,0 +1,36 @@
+@using BikeRental.Resources.Models;
+@using BikeRental.Resources.Views;
+@using BikeRental.Resources.Views.Shared;
+
+@model IEnumerable<BikeRental.Models.Bike>
+@{
+    ViewBag.Title = BikeViewRes.IndexPageTitle;
+}
+
+<h2>@BikeViewRes.IndexPageTitle</h2>
+
+<p>@Html.ActionLink(ButtonRes.Create, "Create")</p>
+
+<table>
+    <tr>
+        <th>@BikeRes.Id</th>
+        <th>@BikeRes.Model</th>
+        <th>@BikeRes.Orders</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.Id.ToString()</td>
+        <td>@item.Model</td>
+        <td>@(item.Orders == null ? "None" : item.Orders.Count.ToString())</td>
+        <td>
+            @Html.ActionLink(ButtonRes.Edit, "Edit", new { id=item.Id }) |
+            @Html.ActionLink(ButtonRes.Delete, "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+

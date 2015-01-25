@@ -1,0 +1,48 @@
+@using BikeRental.Resources.Models;
+@using BikeRental.Resources.Views;
+@using BikeRental.Resources.Views.Shared;
+
+@model BikeRental.Models.Order
+
+@{
+    ViewBag.Title = OrderViewRes.DeletePageTitle;
+}
+
+<h2>@OrderViewRes.DeletePageTitle</h2>
+
+<h3>@MessagesRes.ConfirmDeleteQuestion</h3>
+<fieldset>
+    <legend>@OrderViewRes.FormTitle</legend>
+    <div class="display-label">@OrderRes.Bike</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Bike).ToString()</div>
+
+    <div class="display-label">@OrderRes.Client</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Client).ToString()</div>
+    
+    <div class="display-label">@OrderRes.Office</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Office).ToString()</div>
+    
+    <div class="display-label">@OrderRes.OfficeFinish</div>
+    <div class="display-field">@Model.OfficeFinish</div>
+
+    <div class="display-label">@OrderRes.DateStart</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DateStart)</div>
+
+    <div class="display-label">@OrderRes.DateFinish</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DateFinish)</div>
+
+    <div class="display-label">@OrderRes.IsFree</div>
+    <div class="display-field">@Model.IsFree</div>
+
+    <div class="display-label">@OrderRes.Cost</div>
+    <div class="display-field">@Model.Cost</div>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink(ButtonRes.Back, "Index")
+    </p>
+}
+
+

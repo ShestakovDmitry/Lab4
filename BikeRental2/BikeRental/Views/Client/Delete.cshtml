@@ -1,0 +1,30 @@
+@using BikeRental.Resources.Models;
+@using BikeRental.Resources.Views;
+@using BikeRental.Resources.Views.Shared;
+
+@model BikeRental.Models.Client
+
+@{
+    ViewBag.Title = ClientViewRes.DeletePageTitle;
+}
+
+<h2>@ClientViewRes.DeletePageTitle</h2>
+
+<h3>@MessagesRes.ConfirmDeleteQuestion</h3>
+<fieldset>
+    <legend>@ClientViewRes.FormTitle</legend>
+
+    <div class="display-label">@ClientRes.FIO</div>
+    <div class="display-field">@Model.FIO</div>
+
+    <div class="display-label">@ClientRes.Orders</div>
+    <div class="display-field">@(Model.Orders == null ? "None" : Model.Orders.Count.ToString())</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink(ButtonRes.Back, "Index")
+    </p>
+}
+
+

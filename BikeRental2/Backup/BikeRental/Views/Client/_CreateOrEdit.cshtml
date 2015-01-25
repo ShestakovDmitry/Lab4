@@ -1,0 +1,12 @@
+@model BikeRental.Models.Client
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.FIO)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.FIO)
+    @Html.ValidationMessageFor(model => model.FIO)
+</div>
+
